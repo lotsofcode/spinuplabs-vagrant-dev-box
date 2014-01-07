@@ -105,6 +105,11 @@ exec { 'set_default_ruby':
   require => Exec['install_ruby']
 }
 
+exec { 'install_rails':
+  command => "${as_vagrant} 'gem install rails --no-document'",
+  require => Exec['set_default_ruby']
+}
+
 exec { 'install_bundler':
   command => "${as_vagrant} 'gem install bundler --no-rdoc --no-ri'",
   creates => "${home}/.rvm/bin/bundle",
